@@ -1,0 +1,131 @@
+import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Image,TextInput, Button, ScrollView } from 'react-native';
+import StyleText from './StyleSheets/StyleText';
+
+export default function App() {
+  const [name, setName]=useState<string>("")
+  const [gender, setGender]=useState<string>("")
+  const [beginning, setBeginning]=useState<string>("")
+  const [ending, setEnding]=useState<string>("")
+  const [cogs, setCOGS]=useState<string>("")
+  const [avg,setAvg]=useState<string>("")
+  const [turn,setTurn]=useState<string>("")
+  
+  
+  async function DisplayGender(){
+    alert(gender);
+  }
+  async function CalculateAverage(){
+  let beginning1=+beginning
+  let ending1=+ending
+    const total=beginning1+ending1
+    let total1=+total;
+    const average=(total1/2)
+    let cogs1=+cogs
+    const turnover=cogs1/average
+    let turnover1=turnover.toFixed(1)
+    setAvg(average.toString());
+
+    alert(avg);
+    setTurn(turnover1.toString());
+
+
+    
+  }
+  function Clear() {
+
+    
+    setBeginning("");
+    setEnding("");
+    setCOGS("");
+    setAvg("");
+    setTurn("");
+
+  }
+  return (
+    <View style={styles.container}>
+      <Text style={styles.textStyle}>Open up App.tsx to start working on your app!</Text>
+      <Text style={{ color: "white", fontSize: 24 }}>Welcome to Mini Project</Text>
+      <Text style={StyleText.textColor}>Hello World</Text>
+      <Image source={require("./assets/images.png")}
+      style={{
+        width:100,
+        height:100,
+      }} 
+      ></Image>
+      <Image
+      source={{
+        uri:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      }}
+        style={{
+          width:100,
+          height:100,
+        }}
+      ></Image>
+      <TextInput 
+      placeholder="Enter your name :"
+      onChangeText={(nm)=>setName(nm)}
+      ></TextInput>
+      <TextInput
+      placeholder="Enter your gender :"
+      onChangeText={(gd)=>setGender(gd)}
+      ></TextInput>
+      <Button
+      title="Display name"
+      onPress={()=>{
+        alert(name);
+      
+      }}></Button>
+      
+      <Button
+      title="Display Gender"
+      onPress={()=>{
+        DisplayGender();
+      }}></Button>
+      <TextInput
+      placeholder="Enter the beginning :"
+      onChangeText={(bg)=>setBeginning(bg)}
+      ></TextInput>
+      <TextInput
+      placeholder="Enter the ending :"
+      onChangeText={(eg)=>setEnding(eg)}
+      ></TextInput>
+      <TextInput
+      placeholder="Enter the Cost Of Good Solds :"
+      onChangeText={(cogs)=>setCOGS(cogs)}
+      ></TextInput>
+      <Button 
+      title="Calculate"
+      onPress={()=>{
+        CalculateAverage();
+        <Text style={styles.textStyle}></Text>
+      }}></Button>
+       <Button
+        title="Clear"
+        onPress={() => {
+          Clear();
+        }}
+      ></Button>
+       <Text style={styles.textStyle}>"The Average :{avg}"</Text>
+       <Text style={styles.textStyle}>"The TurnOver :{turn}"</Text>
+
+
+
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'skyblue',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textStyle:{
+    color:"yellow",
+    fontSize:24
+  }
+});
